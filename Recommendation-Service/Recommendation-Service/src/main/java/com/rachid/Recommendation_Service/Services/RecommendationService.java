@@ -10,5 +10,6 @@ public interface RecommendationService {
     public List<RecommendationResponse> getAllRecommendations();
     public void updateRecommendation(long id, RecommendationRequest recommendationRequest);
     public void deleteRecommendation(long id);
+    public List<RecommendationResponse> getRecommendationsByProductId(long id);
 }
 

@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.rachid.Product_Service.Entity")
 @EnableJpaRepositories("com.rachid.Product_Service.Dao")
 @ComponentScan({"com.rachid.Product_Service.Services", "com.rachid.Product_Service.Controllers"})
-@EnableFeignClients("com.rachid.Product_Service.Feign")
 public class ProductServiceApplication {
 
 	public static void main(String[] args) {

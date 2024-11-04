@@ -1,7 +1,5 @@
 package com.rachid.Product_Service.Entity;
 
-import com.rachid.Product_Service.Feign.microservice.RecommendationResponse;
-import com.rachid.Product_Service.Feign.microservice.ReviewResponse;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

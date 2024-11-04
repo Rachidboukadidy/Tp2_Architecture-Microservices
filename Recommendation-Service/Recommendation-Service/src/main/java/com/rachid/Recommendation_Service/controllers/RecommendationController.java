@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recommendation")
+@RequestMapping("/recommendations")
 public class RecommendationController {
     @Autowired
     private RecommendationService recommendationService;
@@ -22,6 +22,7 @@ public class RecommendationController {
         System.out.println("Content: " + recommendationRequest.getContent());
         return recommendationService.addRecommendation(recommendationRequest);
     }
+
     //for get all the recommendations
     @GetMapping
     public List<RecommendationResponse> getAllRecommendations() {
@@ -34,14 +35,29 @@ public class RecommendationController {
         RecommendationResponse productResponse = recommendationService.getRecommendation(id);
         return ResponseEntity.ok().body(productResponse);
     }
+
     // for delete a recommendation
     @DeleteMapping("/{id}")
     public void deleteRecommendation(@PathVariable long id) {
         recommendationService.deleteRecommendation(id);
     }
+
     // for update a recommendation
     @PutMapping("/{id}")
-    public void updateRecommendation( @PathVariable long id, RecommendationRequest recommendationRequest) {
+    public void updateRecommendation(@PathVariable long id, RecommendationRequest recommendationRequest) {
         recommendationService.updateRecommendation(id, recommendationRequest);
     }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<List<RecommendationResponse>> getRecommendationsByProductId(@PathVariable long id) {
+        List<RecommendationResponse> recommendationResponses = recommendationService.getRecommendationsByProductId(id);
+
+//        if (id % 2 == 0) {
+//            throw new RuntimeException("Erreur simulée pour les recommandations du produit " + id);
+//        }
+        return ResponseEntity.ok().body(recommendationResponses);
+    }
+
+
 }
+

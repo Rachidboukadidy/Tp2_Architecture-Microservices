@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,21 @@ public class RecommendationServiceImpl implements RecommendationService {
         Optional<Recommendation> recommendation = recommendationRepository.findById(id);
         recommendation.ifPresent(value -> recommendationRepository.delete(value));
 
+    }
+    @Override
+    public List<RecommendationResponse> getRecommendationsByProductId(long id) {
+        List<Recommendation> recommendationList=recommendationRepository.findRecommendationsByProductId(id);
+        List<RecommendationResponse> recommendationResponses = new ArrayList<>();
+        for (Recommendation recommendation : recommendationList) {
+            RecommendationResponse recommendationResponse = new RecommendationResponse();
+            recommendationResponse.setRecommendationId(recommendation.getRecommendationId());
+            recommendationResponse.setAuthor(recommendation.getAuthor());
+            recommendationResponse.setRate(recommendation.getRate());
+            recommendationResponse.setContent(recommendation.getContent());
+            recommendationResponses.add(recommendationResponse);
+
+        }
+        return recommendationResponses;
     }
 
 

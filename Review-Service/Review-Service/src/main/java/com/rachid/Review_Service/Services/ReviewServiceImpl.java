@@ -76,4 +76,19 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
     }
+    public List<ReviewResponse> getReviewsByProduct(long id) {
+        List<Review> reviews = reviewRepository.findReviewByProductId(id);
+        List<ReviewResponse> reviewResponses = new ArrayList<>();
+        for (Review review : reviews) {
+            ReviewResponse reviewResponse = new ReviewResponse();
+            reviewResponse.setReviewId(review.getReviewId());
+            reviewResponse.setAuthor(review.getAuthor());
+            reviewResponse.setSubject(review.getSubject());
+            reviewResponse.setContent(review.getContent());
+            reviewResponses.add(reviewResponse);
+        }
+
+      return reviewResponses;
+    }
+
 }

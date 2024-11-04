@@ -14,6 +14,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ReviewId;
+    private long productId;
     private String Author;
     private String Subject;
     private String Content;

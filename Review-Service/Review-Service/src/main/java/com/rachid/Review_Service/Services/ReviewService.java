@@ -12,4 +12,5 @@ public interface ReviewService {
     public List<ReviewResponse> getAllReviews();
     public void updateReview( long id,ReviewRequest reviewRequest);
     public void deleteReview(long id);
+    public List<ReviewResponse> getReviewsByProduct(long id);
 }

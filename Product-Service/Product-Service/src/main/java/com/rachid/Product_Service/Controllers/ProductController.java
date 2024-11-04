@@ -1,23 +1,17 @@
 package com.rachid.Product_Service.Controllers;
 
-import com.rachid.Product_Service.Dao.ProductRepository;
 import com.rachid.Product_Service.Dto.ProductRequest;
 import com.rachid.Product_Service.Dto.ProductResponse;
-import com.rachid.Product_Service.Entity.Product;
-import com.rachid.Product_Service.Feign.RecommendationClient;
-import com.rachid.Product_Service.Feign.ReviewClient;
-import com.rachid.Product_Service.Feign.microservice.RecommendationResponse;
-import com.rachid.Product_Service.Feign.microservice.ReviewResponse;
+
 import com.rachid.Product_Service.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     private  ProductService productService ;
@@ -38,6 +32,10 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProduct( @PathVariable long id) {
         ProductResponse productResponse = productService.getProduct(id);
+//        // Simule une erreur si l'ID du produit est pair
+//        if (id % 2 == 0) {
+//            throw new RuntimeException("Erreur simulée pour le produit " + id);
+//        }
         return ResponseEntity.ok().body(productResponse);
     }
     // for delete a product
@@ -51,9 +49,5 @@ public class ProductController {
         productService.updateProduct(id, productRequest);
     }
 
-    @GetMapping("/getReview&Recommendation/{id}")
-    public ProductResponse findProductWithAssociation(@PathVariable Long id){
-        ProductResponse productResponse = productService.findProductById(id);
-        return ResponseEntity.ok().body(productResponse).getBody();
-    }
+
 }

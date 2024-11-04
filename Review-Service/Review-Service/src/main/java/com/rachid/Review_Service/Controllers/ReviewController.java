@@ -39,4 +39,14 @@ public class ReviewController {
     public void updateProduct( @PathVariable long id, ReviewRequest reviewRequest) {
         reviewService.updateReview(id, reviewRequest);
     }
+    @GetMapping("/products/{id}")
+    public ResponseEntity<List<ReviewResponse>> getReviewbyProduct( @PathVariable long id) {
+        List<ReviewResponse> reviewResponse = reviewService.getReviewsByProduct(id);
+
+//        if (id % 2 == 0) {
+//            throw new RuntimeException("Erreur simulée pour les avis du produit " + id);
+//        }
+        return ResponseEntity.ok().body(reviewResponse);
+
+    }
 }

@@ -3,7 +3,6 @@ package com.rachid.Review_Service.core;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -12,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.rachid.Review_Service.Entity")
 @EnableJpaRepositories("com.rachid.Review_Service.Dao")
 @ComponentScan({"com.rachid.Review_Service.Services", "com.rachid.Review_Service.Controllers"})
-@EnableEurekaServer
 public class ReviewServiceApplication {
 
 	public static void main(String[] args) {
